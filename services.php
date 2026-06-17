@@ -34,17 +34,11 @@ require_once __DIR__ . '/includes/header.php';
     <div class="card reveal fade-up delay-<?= ($index % 4) + 1 ?>">
         <div class="card-body">
             <div class="flex gap-lg">
-                <div style="width: 64px; height: 64px; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; color: white;">
-                    <?php
-                    $gradients = ['var(--gradient-card-1)', 'var(--gradient-card-2)', 'var(--gradient-card-3)', 'var(--gradient-card-4)'];
-                    $shadows = ['0 8px 25px rgba(124,58,237,0.25)', '0 8px 25px rgba(6,182,212,0.25)', '0 8px 25px rgba(249,115,22,0.25)', '0 8px 25px rgba(16,185,129,0.25)'];
-                    $i = $index % 4;
-                    ?>
-                    <div style="width: 64px; height: 64px; background: <?= $gradients[$i] ?>; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; font-size: 28px; color: white; box-shadow: <?= $shadows[$i] ?>; transition: all 0.3s var(--ease-bounce);">
-                        <i class="fas fa-<?= sanitize($svc['icon']) ?>"></i>
-                    </div>
+                <?php $i = ($index % 4) + 1; ?>
+                <div class="gradient-icon gradient-icon-<?= $i ?>" aria-hidden="true">
+                    <i class="fas fa-<?= sanitize($svc['icon']) ?>"></i>
                 </div>
-                <div style="flex: 1;">
+                <div class="flex-1" style="flex:1;min-width:0;">
                     <div class="flex items-center justify-between mb-sm">
                         <div>
                             <p style="font-size: 11px; font-weight: 700; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 4px 0;">Division</p>

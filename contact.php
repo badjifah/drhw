@@ -94,7 +94,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="card-header">
             <h2 class="card-title">Envoyez-nous un message</h2>
         </div>
-        <form method="POST" class="card-body">
+        <form method="POST" class="card-body" data-contact-form>
             <div class="flex flex-col gap-md">
                 <div class="form-group">
                     <label class="form-label" for="prenom">Prénom <span style="color: var(--color-danger);">*</span></label>

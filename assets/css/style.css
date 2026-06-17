@@ -376,3 +376,5 @@ table .text-secondary{color:var(--text-secondary);font-size:13px}
 @media(prefers-color-scheme:dark){html:not([data-theme="light"]) .director-portrait-frame{background:linear-gradient(145deg,#1e1b4b,#0c1a2e)}html:not([data-theme="light"]) .director-portrait-badge{border-color:#0f172a}html:not([data-theme="light"]) .director-avatar-inner{background:#0f172a}}
 
 /* nav collée à gauche */.topbar-nav{margin-left:8px !important}
+
+/* nav à droite près du toggle */.topbar-nav{margin-left:auto !important}.topbar-right{margin-left:0 !important}

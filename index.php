@@ -67,45 +67,64 @@ require_once __DIR__ . '/includes/header.php';
 </div>
 
 <!-- Mot du Directeur -->
-<div class="director-section mb-lg reveal fade-up">
-    <div class="director-flex" style="display:flex;align-items:center;gap:var(--space-2xl);padding:var(--space-2xl);">
-        <!-- Colonne photo -->
-        <div style="flex-shrink:0;position:relative;" class="reveal-scale delay-1">
-            <div class="director-photo-ring">
-                <div class="director-photo-inner">
+<div class="director-section mb-lg reveal">
+    <div class="director-layout">
+
+        <!-- Colonne portrait -->
+        <div class="director-photo-col reveal-scale delay-1">
+            <div class="director-badge" style="align-self:flex-start;">
+                <div class="director-badge-dot"></div>
+                <span>Mot du Directeur</span>
+            </div>
+            <div class="director-portrait">
+                <div class="director-portrait-frame">
                     <?php if (!empty($directeur_photo)): ?>
-                        <img src="<?= BASE_URL ?>/assets/uploads/directeur/<?= sanitize($directeur_photo) ?>" alt="<?= sanitize($directeur_prenom . ' ' . $directeur_nom) ?>">
+                        <img src="<?= BASE_URL ?>/assets/uploads/directeur/<?= sanitize($directeur_photo) ?>"
+                             alt="Portrait de <?= sanitize($directeur_prenom . ' ' . $directeur_nom) ?>"
+                             loading="lazy">
                     <?php else: ?>
-                        <i class="fas fa-user-tie"></i>
+                        <div class="director-portrait-placeholder">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
                     <?php endif; ?>
+                </div>
+                <div class="director-portrait-badge" aria-hidden="true">
+                    <i class="fas fa-shield-halved"></i>
                 </div>
             </div>
         </div>
 
         <!-- Colonne texte -->
-        <div style="flex:1;min-width:0;">
-            <!-- Badge slogan -->
-            <div class="director-badge reveal fade-up delay-2" style="margin-bottom:var(--space-lg);">
-                <div class="director-badge-dot"></div>
-                <span>Mot du Directeur</span>
+        <div class="director-text-col">
+
+            <!-- Citation -->
+            <div class="director-quote-wrap reveal fade-up delay-2">
+                <span class="director-quote-mark" aria-hidden="true">&#8220;</span>
+                <p class="director-quote-text"><?= sanitize($message_bienvenue) ?></p>
             </div>
 
-            <!-- Message -->
-            <div class="director-quote reveal fade-up delay-3">
-                <p style="font-size:1.05rem;color:var(--text-primary);line-height:1.9;margin:0;font-style:italic;">
-                    &#8220; <?= sanitize($message_bienvenue) ?> &#8221;
-                </p>
+            <!-- Séparateur -->
+            <div class="director-divider reveal fade-up delay-3">
+                <div class="director-divider-line"></div>
+                <div class="director-divider-dots">
+                    <span></span><span></span><span></span>
+                </div>
             </div>
 
-            <!-- Ligne séparatrice animée -->
-            <div class="director-line reveal fade-up delay-4" style="margin:var(--space-xl) 0 var(--space-lg) 0;width:60px;"></div>
-
-            <!-- Nom + Grade -->
-            <div class="reveal fade-up delay-5">
-                <p class="director-name"><?= sanitize($directeur_prenom) ?> <?= sanitize($directeur_nom) ?></p>
-                <p class="director-grade"><?= sanitize($directeur_grade) ?></p>
-                <p class="director-title-sub"><?= sanitize($directeur_titre) ?></p>
+            <!-- Identité -->
+            <div class="director-identity reveal fade-up delay-4">
+                <div class="director-avatar-ring">
+                    <div class="director-avatar-inner">
+                        <?= mb_strtoupper(mb_substr($directeur_prenom, 0, 1)) ?>
+                    </div>
+                </div>
+                <div class="director-name-block">
+                    <p class="director-name"><?= sanitize($directeur_prenom) ?> <?= sanitize($directeur_nom) ?></p>
+                    <p class="director-grade"><?= sanitize($directeur_grade) ?></p>
+                    <p class="director-title-sub"><?= sanitize($directeur_titre) ?></p>
+                </div>
             </div>
+
         </div>
     </div>
 </div>

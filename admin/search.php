@@ -3,7 +3,7 @@ require_once __DIR__ . '/../includes/functions.php';
 requireSession();
 include __DIR__ . '/includes/admin_header.php';
 
-$query = trim($_GET['q'] ?? '');
+$query = mb_substr(trim($_GET['q'] ?? ''), 0, 100);
 $results = ['actualites' => [], 'documents' => [], 'services' => [], 'messages' => [], 'admins' => []];
 
 if (mb_strlen($query) >= 2) {

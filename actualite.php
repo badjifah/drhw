@@ -48,7 +48,7 @@ require_once __DIR__ . '/includes/header.php';
     <?php endif; ?>
     <div class="card-body">
         <div class="flex items-center gap-sm mb-md">
-            <span class="badge badge-<?= $article['category'] === 'communique' ? 'danger' : ($article['category'] === 'evenement' ? 'warning' : 'info') ?>">
+            <span class="badge badge-<?= categoryBadgeClass($article['category']) ?>">
                 <span class="badge-dot"></span>
                 <?php if ($article['category'] === 'communique'): ?>Communiqué
                 <?php elseif ($article['category'] === 'evenement'): ?>Événement

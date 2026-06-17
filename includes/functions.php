@@ -365,6 +365,15 @@ function getSetting(string $key, string $default = ''): string
     }
 }
 
+function categoryBadgeClass(string $category): string
+{
+    return match($category) {
+        'communique' => 'danger',
+        'evenement'  => 'warning',
+        default      => 'info',
+    };
+}
+
 // ---------- SEO helpers ----------
 
 function renderMetaTags(string $title, string $description, string $url = '', string $image = ''): void

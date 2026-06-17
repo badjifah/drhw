@@ -138,7 +138,7 @@ require_once __DIR__ . '/includes/header.php';
             </div>
             <div class="article-card-body">
                 <div class="article-card-meta">
-                    <span class="badge badge-<?= $article['category'] === 'communique' ? 'danger' : ($article['category'] === 'evenement' ? 'warning' : 'info') ?>">
+                    <span class="badge badge-<?= categoryBadgeClass($article['category']) ?>">
                         <span class="badge-dot"></span>
                         <?php if ($article['category'] === 'communique'): ?>Communiqué
                         <?php elseif ($article['category'] === 'evenement'): ?>Événement

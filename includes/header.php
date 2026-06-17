@@ -39,7 +39,7 @@
         <a href="<?= BASE_URL ?>/documents.php" class="topbar-nav-link <?= activePage('documents.php') ? 'active' : '' ?>">
             <i class="fas fa-file-lines"></i> Documents
         </a>
-        <a href="<?= BASE_URL ?>/?page=search" class="topbar-nav-link <?= activePage('search.php') ? 'active' : '' ?>">
+        <a href="<?= BASE_URL ?>/?page=search" class="topbar-nav-link <?= isActive('search') ?>">
             <i class="fas fa-search"></i> Recherche
         </a>
         <a href="<?= BASE_URL ?>/contact.php" class="topbar-nav-link <?= activePage('contact.php') ? 'active' : '' ?>">

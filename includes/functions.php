@@ -196,7 +196,11 @@ function sendEmail(string $to, string $subject, string $htmlBody, string $fromEm
         'X-Mailer: PHP/' . phpversion(),
     ];
 
-    return mail($to, $subject, $htmlBody, implode("\r\n", $headers));
+    $sent = mail($to, $subject, $htmlBody, implode("\r\n", $headers));
+    if (!$sent) {
+        error_log("[DRH] Échec envoi email à: $to — sujet: $subject");
+    }
+    return $sent;
 }
 
 // ---------- Image helpers ----------

@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delet
     redirect(BASE_URL . '/admin/admins.php');
 }
 
-$admins = $db->fetchAll("SELECT * FROM admins ORDER BY nom");
+$admins = $db->fetchAll("SELECT * FROM admins ORDER BY full_name");
 ?>
 <div class="container">
     <div class="page-header">
@@ -44,11 +44,11 @@ $admins = $db->fetchAll("SELECT * FROM admins ORDER BY nom");
                 <tbody>
                     <?php foreach ($admins as $a): ?>
                         <tr>
-                            <td class="font-medium"><?= sanitize($a['nom']) ?></td>
-                            <td class="text-muted">@<?= sanitize($a['login']) ?></td>
+                            <td class="font-medium"><?= sanitize($a['full_name']) ?></td>
+                            <td class="text-muted">@<?= sanitize($a['username']) ?></td>
                             <td class="text-small"><?= sanitize($a['email']) ?></td>
-                            <td><span class="badge badge-<?= $a['role'] === 'super_admin' ? 'warning' : 'primary' ?>"><?= $a['role'] ?? 'admin' ?></span></td>
-                            <td class="text-small text-muted"><?= formatDate($a['date_creation'] ?? $a['created_at'] ?? date('Y-m-d')) ?></td>
+                            <td><span class="badge badge-<?= $a['role'] === 'superadmin' ? 'warning' : 'primary' ?>"><?= $a['role'] ?? 'admin' ?></span></td>
+                            <td class="text-small text-muted"><?= formatDate($a['created_at'] ?? date('Y-m-d')) ?></td>
                             <td class="actions">
                                 <a href="<?= BASE_URL ?>/admin/admin_form.php?id=<?= $a['id'] ?>" class="btn btn-sm btn-primary"><i class="fas fa-pen"></i></a>
                                 <?php if ($a['id'] != Session::get('admin_id')): ?>

@@ -10,11 +10,11 @@ if (mb_strlen($query) >= 2) {
     $db = Database::getInstance();
     $param = ['q' => "%{$query}%"];
     
-    $results['actualites'] = $db->fetchAll("SELECT * FROM actualites WHERE titre LIKE :q OR contenu LIKE :q ORDER BY created_at DESC LIMIT 10", $param);
-    $results['documents'] = $db->fetchAll("SELECT * FROM documents WHERE titre LIKE :q OR description LIKE :q ORDER BY created_at DESC LIMIT 10", $param);
-    $results['services'] = $db->fetchAll("SELECT * FROM services WHERE nom LIKE :q OR description LIKE :q ORDER BY nom LIMIT 10", $param);
-    $results['messages'] = $db->fetchAll("SELECT * FROM messages WHERE sujet LIKE :q OR message LIKE :q OR email LIKE :q ORDER BY created_at DESC LIMIT 10", $param);
-    $results['admins'] = $db->fetchAll("SELECT * FROM admins WHERE nom LIKE :q OR login LIKE :q OR email LIKE :q LIMIT 10", $param);
+    $results['actualites'] = $db->fetchAll("SELECT * FROM actualites WHERE title LIKE :q OR content LIKE :q ORDER BY created_at DESC LIMIT 10", $param);
+    $results['documents'] = $db->fetchAll("SELECT * FROM documents WHERE title LIKE :q OR description LIKE :q ORDER BY created_at DESC LIMIT 10", $param);
+    $results['services'] = $db->fetchAll("SELECT * FROM services WHERE title LIKE :q OR description LIKE :q ORDER BY title LIMIT 10", $param);
+    $results['messages'] = $db->fetchAll("SELECT * FROM messages WHERE subject LIKE :q OR message LIKE :q OR email LIKE :q ORDER BY created_at DESC LIMIT 10", $param);
+    $results['admins'] = $db->fetchAll("SELECT * FROM admins WHERE full_name LIKE :q OR username LIKE :q OR email LIKE :q LIMIT 10", $param);
 }
 
 $totalResults = array_sum(array_map('count', $results));
@@ -54,8 +54,8 @@ $totalResults = array_sum(array_map('count', $results));
                                 <tbody>
                                     <?php foreach ($results[$key] as $item): ?>
                                         <tr>
-                                            <td class="font-medium"><?= sanitize(truncate($item['titre'] ?? $item['sujet'] ?? $item['nom'] ?? $item['login'] ?? '', 60)) ?></td>
-                                            <td class="text-muted text-small"><?= formatDate($item['created_at'] ?? $item['date_creation'] ?? date('Y-m-d')) ?></td>
+                                            <td class="font-medium"><?= sanitize(truncate($item['title'] ?? $item['subject'] ?? $item['name'] ?? $item['username'] ?? '', 60)) ?></td>
+                                            <td class="text-muted text-small"><?= formatDate($item['created_at'] ?? date('Y-m-d')) ?></td>
                                             <td>
                                                 <?php if ($key === 'actualites'): ?>
                                                     <a href="?page=actualite_form&id=<?= $item['id'] ?>" class="btn btn-sm btn-primary">Modifier</a>

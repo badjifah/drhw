@@ -23,6 +23,10 @@
         <span>DRH</span>
     </a>
 
+    <button class="theme-toggle" id="theme-toggle" aria-label="Passer en mode sombre">
+        <i class="fas fa-moon"></i>
+    </button>
+
     <nav class="topbar-nav" id="topbar-nav">
         <a href="<?= BASE_URL ?>/index.php" class="topbar-nav-link <?= activePage('index.php') ? 'active' : '' ?>">
             <i class="fas fa-house"></i> Accueil
@@ -39,7 +43,7 @@
         <a href="<?= BASE_URL ?>/documents.php" class="topbar-nav-link <?= activePage('documents.php') ? 'active' : '' ?>">
             <i class="fas fa-file-lines"></i> Documents
         </a>
-        <a href="<?= BASE_URL ?>/?page=search" class="topbar-nav-link <?= activePage('search.php') ? 'active' : '' ?>">
+        <a href="<?= BASE_URL ?>/?page=search" class="topbar-nav-link <?= isActive('search') ?>">
             <i class="fas fa-search"></i> Recherche
         </a>
         <a href="<?= BASE_URL ?>/contact.php" class="topbar-nav-link <?= activePage('contact.php') ? 'active' : '' ?>">
@@ -48,9 +52,6 @@
     </nav>
 
     <div class="topbar-right">
-        <button class="theme-toggle" id="theme-toggle" aria-label="Passer en mode sombre">
-            <i class="fas fa-moon"></i>
-        </button>
         <button class="topbar-btn topbar-burger" id="mobile-menu-toggle" aria-label="Menu">
             <i class="fas fa-bars"></i>
         </button>

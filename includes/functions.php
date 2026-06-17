@@ -196,7 +196,11 @@ function sendEmail(string $to, string $subject, string $htmlBody, string $fromEm
         'X-Mailer: PHP/' . phpversion(),
     ];
 
-    return mail($to, $subject, $htmlBody, implode("\r\n", $headers));
+    $sent = mail($to, $subject, $htmlBody, implode("\r\n", $headers));
+    if (!$sent) {
+        error_log("[DRH] Échec envoi email à: $to — sujet: $subject");
+    }
+    return $sent;
 }
 
 // ---------- Image helpers ----------
@@ -314,7 +318,7 @@ function uploadFile(array $file, string $subdir = ''): ?string
         mkdir($targetDir, 0755, true);
     }
 
-    $filename = uniqid() . '_' . time() . '.' . $ext;
+    $filename = bin2hex(random_bytes(16)) . '.' . $ext;
     $targetFile = $targetDir . '/' . $filename;
 
     if (move_uploaded_file($file['tmp_name'], $targetFile)) {
@@ -359,6 +363,15 @@ function getSetting(string $key, string $default = ''): string
     } catch (Exception $e) {
         return $default;
     }
+}
+
+function categoryBadgeClass(string $category): string
+{
+    return match($category) {
+        'communique' => 'danger',
+        'evenement'  => 'warning',
+        default      => 'info',
+    };
 }
 
 // ---------- SEO helpers ----------

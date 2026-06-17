@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS admins (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
-CREATE UNIQUE INDEX idx_admins_login ON admins(login);
+CREATE UNIQUE INDEX idx_admins_username ON admins(username);
 
 -- ------------------------------------------------------------
 -- Table: activity_logs (journaux d'activité)

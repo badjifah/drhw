@@ -7,6 +7,12 @@ require_once __DIR__ . '/includes/functions.php';
 $db = Database::getInstance();
 $cat = $_GET['categorie'] ?? '';
 
+$categories = $db->fetchAll("SELECT DISTINCT category FROM documents WHERE category IS NOT NULL AND category != '' ORDER BY category");
+$allowedCats = array_column($categories, 'category');
+if ($cat && !in_array($cat, $allowedCats, true)) {
+    $cat = '';
+}
+
 $where = '1';
 $params = [];
 if ($cat) {
@@ -20,8 +26,6 @@ $pagination = paginate(
     9
 );
 $documents = $pagination['items'];
-
-$categories = $db->fetchAll("SELECT DISTINCT category FROM documents WHERE category IS NOT NULL AND category != '' ORDER BY category");
 
 $pageTitle = 'Espace documents';
 $pageDescription = 'Téléchargez les documents officiels, formulaires et publications de la DRH.';

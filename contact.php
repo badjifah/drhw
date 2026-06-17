@@ -14,16 +14,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         redirect('?page=contact');
     }
 
-    $prenom = sanitize($_POST['prenom'] ?? '');
-    $nom = sanitize($_POST['nom'] ?? '');
-    $email = sanitize($_POST['email'] ?? '');
-    $telephone = sanitize($_POST['telephone'] ?? '');
-    $sujet = sanitize($_POST['subject'] ?? '');
-    $message = sanitize($_POST['message'] ?? '');
+    $prenom   = sanitize(mb_substr($_POST['prenom']  ?? '', 0, 100));
+    $nom      = sanitize(mb_substr($_POST['nom']     ?? '', 0, 100));
+    $email    = sanitize(mb_substr($_POST['email']   ?? '', 0, 150));
+    $telephone = sanitize(mb_substr($_POST['telephone'] ?? '', 0, 20));
+    $sujet    = sanitize(mb_substr($_POST['subject'] ?? '', 0, 200));
+    $message  = sanitize(mb_substr($_POST['message'] ?? '', 0, 3000));
 
     if (empty($prenom)) $errors[] = 'Le prénom est requis.';
     if (empty($nom)) $errors[] = 'Le nom est requis.';
     if (!validateEmail($email)) $errors[] = 'Email invalide.';
+    if (!empty($telephone) && !preg_match('/^[\d\s\-\+\(\)]{5,20}$/', $telephone)) {
+        $errors[] = 'Format de téléphone invalide.';
+    }
     if (empty($sujet)) $errors[] = 'Le sujet est requis.';
     if (empty($message)) $errors[] = 'Le message est requis.';
 

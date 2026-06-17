@@ -318,7 +318,7 @@ function uploadFile(array $file, string $subdir = ''): ?string
         mkdir($targetDir, 0755, true);
     }
 
-    $filename = uniqid() . '_' . time() . '.' . $ext;
+    $filename = bin2hex(random_bytes(16)) . '.' . $ext;
     $targetFile = $targetDir . '/' . $filename;
 
     if (move_uploaded_file($file['tmp_name'], $targetFile)) {

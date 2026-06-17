@@ -75,9 +75,12 @@ $pageTitle = $pageTitle ?? 'Tableau de bord';
         <a href="?page=profile" class="topbar-btn" title="Profil">
             <i class="fas fa-user-shield"></i>
         </a>
-        <a href="<?= BASE_URL ?>/admin/logout.php" class="topbar-btn" title="Déconnexion" style="color: #F87171;">
-            <i class="fas fa-sign-out-alt"></i>
-        </a>
+        <form method="POST" action="<?= BASE_URL ?>/admin/logout.php" style="display:inline;">
+            <?= csrfField() ?>
+            <button type="submit" class="topbar-btn" title="Déconnexion" style="color: #F87171; background: none; border: none; cursor: pointer; padding: 0;">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
+        </form>
         <button class="topbar-btn topbar-burger" id="mobile-menu-toggle" aria-label="Menu">
             <i class="fas fa-bars"></i>
         </button>

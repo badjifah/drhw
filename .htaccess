@@ -1,0 +1,52 @@
+# ============================================================
+# Configuration Apache pour le site DRH
+# ============================================================
+
+Options -Indexes
+DirectoryIndex index.php index.html
+
+# URL rewriting
+RewriteEngine On
+
+# Security: Block access to includes
+RewriteRule ^includes/ - [F,L]
+RewriteRule ^admin/includes/ - [F,L]
+RewriteRule ^database/ - [F,L]
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# PHP protection
+<FilesMatch "\.(sql|md|log)$">
+    Require all denied
+</FilesMatch>
+
+# File uploads security (block PHP execution in uploads)
+RewriteRule ^assets/uploads/.*\.(php|phar|phtml|php3|php4|php5|pl|cgi)$ - [F,L]
+
+# Cache control for static assets
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 3 months"
+    ExpiresByType image/png "access plus 3 months"
+    ExpiresByType image/gif "access plus 3 months"
+    ExpiresByType image/svg+xml "access plus 3 months"
+    ExpiresByType application/font-woff2 "access plus 6 months"
+</IfModule>
+
+# Gzip compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json text/xml
+</IfModule>
+
+# Error pages
+ErrorDocument 403 /drhw/public/403.php
+ErrorDocument 404 /drhw/public/404.php
+ErrorDocument 500 /drhw/public/500.php

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /assets/uploads/
+
+Sitemap: https://www.example.com/drhw/public/sitemap.xml

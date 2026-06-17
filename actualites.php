@@ -56,7 +56,7 @@ require_once __DIR__ . '/includes/header.php';
     <a href="<?= BASE_URL ?>/actualite.php?slug=<?= sanitize($article['slug']) ?>" class="article-card reveal fade-up delay-<?= ($i % 3) + 1 ?>">
         <div class="article-card-image">
             <?php if ($article['image']): ?>
-            <img src="<?= BASE_URL ?>/assets/uploads/<?= sanitize($article['image']) ?>" alt="<?= sanitize($article['title']) ?>">
+            <img src="<?= BASE_URL ?>/assets/uploads/<?= sanitize($article['image']) ?>" alt="<?= sanitize($article['title']) ?>" loading="lazy">
             <?php else: ?>
             <i class="fas fa-newspaper"></i>
             <?php endif; ?>

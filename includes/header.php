@@ -23,10 +23,6 @@
         <span>DRH</span>
     </a>
 
-    <button class="theme-toggle" id="theme-toggle" aria-label="Passer en mode sombre">
-        <i class="fas fa-moon"></i>
-    </button>
-
     <nav class="topbar-nav" id="topbar-nav">
         <a href="<?= BASE_URL ?>/index.php" class="topbar-nav-link <?= activePage('index.php') ? 'active' : '' ?>">
             <i class="fas fa-house"></i> Accueil
@@ -52,6 +48,9 @@
     </nav>
 
     <div class="topbar-right">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Passer en mode sombre">
+            <i class="fas fa-moon"></i>
+        </button>
         <button class="topbar-btn topbar-burger" id="mobile-menu-toggle" aria-label="Menu">
             <i class="fas fa-bars"></i>
         </button>
